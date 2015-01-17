@@ -10,6 +10,7 @@ throng(start, {
 
 function start() {
   var express = require('express');
+  var bcrypt = require('bcrypt');
   var app = express();
 
   app
@@ -17,7 +18,12 @@ function start() {
     .listen(PORT, onListen);
 
   function sayHello(req, res, next) {
-    res.send('Hello, world!');
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(Date.now() + '', salt, function(err, hash) {
+        if (err) return next(err);
+        res.send('A hashed date for you! ' + hash);
+      });
+    });
   }
 
   function onListen() {
