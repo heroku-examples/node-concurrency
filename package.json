@@ -2,6 +2,8 @@
   "name": "example-concurrency",
   "version": "1.0.0",
   "description": "A Heroku Example for WEB_CONCURRENCY",
+  "repository": "https://github.com/heroku-examples/node-concurrency.git",
+  "readme": "https://github.com/heroku-examples/node-concurrency/blob/master/readme.md",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
