@@ -18,7 +18,8 @@ function start() {
     .listen(PORT, onListen);
 
   function sayHello(req, res, next) {
-    var hmac = crypto.createHmac('sha512WithRSAEncryption', 'ninjaturtles');
+    var key = Math.random() < 0.5 ? 'ninjaturtles' : 'powerrangers';
+    var hmac = crypto.createHmac('sha512WithRSAEncryption', key);
     var date = Date.now() + '';
     hmac.setEncoding('base64');
     hmac.end(date, function() {
