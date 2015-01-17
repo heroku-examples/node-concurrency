@@ -10,6 +10,9 @@
   },
   "author": "Hunter Loftis <hunter@hunterloftis.com>",
   "license": "ISC",
+  "engines": {
+    "iojs": "1.0.x"
+  },
   "dependencies": {
     "express": "^4.11.0",
     "throng": "^1.0.0"
