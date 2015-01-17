@@ -9,8 +9,8 @@ throng(start, {
 });
 
 function start() {
+  var crypto = require('crypto');
   var express = require('express');
-  var bcrypt = require('bcrypt');
   var app = express();
 
   app
@@ -18,11 +18,11 @@ function start() {
     .listen(PORT, onListen);
 
   function sayHello(req, res, next) {
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(Date.now() + '', salt, function(err, hash) {
-        if (err) return next(err);
-        res.send('A hashed date for you! ' + hash);
-      });
+    var hmac = crypto.createHmac('sha512WithRSAEncryption', 'ninjaturtles');
+    var date = Date.now() + '';
+    hmac.setEncoding('base64');
+    hmac.end(date, function() {
+      res.send('A hashed date for you! ' + hmac.read());
     });
   }
 
