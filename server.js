@@ -14,10 +14,12 @@ function start() {
   var app = express();
 
   app
-    .get('/', sayHello)
+    .get('/cpu', cpuBound)
+    .get('/memory', memoryBound)
+    .get('/io', ioBound)
     .listen(PORT, onListen);
 
-  function sayHello(req, res, next) {
+  function cpuBound(req, res, next) {
     var key = Math.random() < 0.5 ? 'ninjaturtles' : 'powerrangers';
     var hmac = crypto.createHmac('sha512WithRSAEncryption', key);
     var date = Date.now() + '';
@@ -25,6 +27,19 @@ function start() {
     hmac.end(date, function() {
       res.send('A hashed date for you! ' + hmac.read());
     });
+  }
+
+  function memoryBound(req, res, next) {
+    var megabyte = new Array(1024 * 1024).join('X');
+    setTimeout(function sendResponse() {
+      res.send('Large response: ' + megabyte);
+    }, 50).unref();
+  }
+
+  function ioBound(req, res, next) {
+    setTimeout(function SimulateDb() {
+      res.send('Got response from fake db!');
+    }, 300).unref();
   }
 
   function onListen() {
