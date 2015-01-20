@@ -2,6 +2,7 @@ var throng = require('throng');
 
 var WORKERS = process.env.WEB_CONCURRENCY || 1;
 var PORT = process.env.PORT || 3000;
+var BLITZ_KEY = process.env.BLITZ_KEY;
 
 throng(start, {
   workers: WORKERS,
@@ -15,7 +16,7 @@ function start() {
   var app = express();
 
   app
-    .use(blitz('mu-fc2cbbde-ef0155e4-eebefb0a-f0718ed4'))
+    .use(blitz(BLITZ_KEY))
     .get('/cpu', cpuBound)
     .get('/memory', memoryBound)
     .get('/io', ioBound)
