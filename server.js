@@ -31,9 +31,9 @@ function start() {
 
   function memoryBound(req, res, next) {
     var hundredk = new Array(100 * 1024).join('X');
-    setTimeout(function sendResponse() {
+    process.nextTick(function sendResponse() {
       res.send('Large response: ' + hundredk);
-    }, 50).unref();
+    });
   }
 
   function ioBound(req, res, next) {
