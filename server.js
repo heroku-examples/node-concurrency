@@ -30,9 +30,9 @@ function start() {
   }
 
   function memoryBound(req, res, next) {
-    var megabyte = new Array(1024 * 1024).join('X');
+    var hundredk = new Array(100 * 1024).join('X');
     setTimeout(function sendResponse() {
-      res.send('Large response: ' + megabyte);
+      res.send('Large response: ' + hundredk);
     }, 50).unref();
   }
 
