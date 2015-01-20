@@ -11,9 +11,11 @@ throng(start, {
 function start() {
   var crypto = require('crypto');
   var express = require('express');
+  var blitz = require('blitzkrieg');
   var app = express();
 
   app
+    .use(blitz('mu-fc2cbbde-ef0155e4-eebefb0a-f0718ed4'))
     .get('/cpu', cpuBound)
     .get('/memory', memoryBound)
     .get('/io', ioBound)
