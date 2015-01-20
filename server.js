@@ -13,7 +13,12 @@ function start() {
   var crypto = require('crypto');
   var express = require('express');
   var blitz = require('blitzkrieg');
+  var lag = require('event-loop-lag')(1000);
   var app = express();
+
+  setInterval(function() {
+    console.log('lag:', lag());
+  }, 1000).unref();
 
   app
     .use(blitz(BLITZ_KEY))

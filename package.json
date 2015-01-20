@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "blitzkrieg": "^1.0.0",
+    "event-loop-lag": "^1.0.3",
     "express": "^4.11.0",
     "throng": "^1.0.0"
   }
