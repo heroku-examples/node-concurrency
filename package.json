@@ -1,6 +1,6 @@
 {
   "name": "example-concurrency",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Heroku Example for WEB_CONCURRENCY",
   "repository": "https://github.com/heroku-examples/node-concurrency.git",
   "readme": "https://github.com/heroku-examples/node-concurrency/blob/master/readme.md",
@@ -11,12 +11,12 @@
   "author": "Hunter Loftis <hunter@hunterloftis.com>",
   "license": "ISC",
   "engines": {
-    "iojs": "1.0.x"
+    "iojs": "3.0.0"
   },
   "dependencies": {
-    "blitzkrieg": "^1.0.0",
-    "event-loop-lag": "^1.0.3",
-    "express": "^4.11.0",
-    "throng": "^1.0.0"
+    "blitzkrieg": "1.0.0",
+    "event-loop-lag": "1.1.0",
+    "express": "4.13.3",
+    "throng": "1.0.0"
   }
 }
