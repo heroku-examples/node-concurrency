@@ -1,19 +1,19 @@
-var throng = require('throng');
+const throng = require('throng');
 
-var WORKERS = process.env.WEB_CONCURRENCY || 1;
-var PORT = process.env.PORT || 3000;
-var BLITZ_KEY = process.env.BLITZ_KEY;
+const WORKERS = process.env.WEB_CONCURRENCY || 1;
+const PORT = process.env.PORT || 3000;
+const BLITZ_KEY = process.env.BLITZ_KEY;
 
-throng(start, {
+throng({
   workers: WORKERS,
   lifetime: Infinity
-});
+}, start);
 
 function start() {
-  var crypto = require('crypto');
-  var express = require('express');
-  var blitz = require('blitzkrieg');
-  var app = express();
+  const crypto = require('crypto');
+  const express = require('express');
+  const blitz = require('blitzkrieg');
+  const app = express();
 
   app
     .use(blitz(BLITZ_KEY))
@@ -23,17 +23,15 @@ function start() {
     .listen(PORT, onListen);
 
   function cpuBound(req, res, next) {
-    var key = Math.random() < 0.5 ? 'ninjaturtles' : 'powerrangers';
-    var hmac = crypto.createHmac('sha512WithRSAEncryption', key);
-    var date = Date.now() + '';
+    const key = Math.random() < 0.5 ? 'ninjaturtles' : 'powerrangers';
+    const hmac = crypto.createHmac('sha512WithRSAEncryption', key);
+    const date = Date.now() + '';
     hmac.setEncoding('base64');
-    hmac.end(date, function() {
-      res.send('A hashed date for you! ' + hmac.read());
-    });
+    hmac.end(date, () => res.send('A hashed date for you! ' + hmac.read()));
   }
 
   function memoryBound(req, res, next) {
-    var hundredk = new Array(100 * 1024).join('X');
+    const hundredk = new Array(100 * 1024).join('X');
     setTimeout(function sendResponse() {
       res.send('Large response: ' + hundredk);
     }, 20).unref();
