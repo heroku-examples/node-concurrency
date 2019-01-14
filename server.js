@@ -2,7 +2,6 @@ const throng = require('throng');
 
 const WORKERS = process.env.WEB_CONCURRENCY || 1;
 const PORT = process.env.PORT || 3000;
-const BLITZ_KEY = process.env.BLITZ_KEY;
 
 throng({
   workers: WORKERS,
@@ -12,11 +11,9 @@ throng({
 function start() {
   const crypto = require('crypto');
   const express = require('express');
-  const blitz = require('blitzkrieg');
   const app = express();
 
   app
-    .use(blitz(BLITZ_KEY))
     .get('/cpu', cpuBound)
     .get('/memory', memoryBound)
     .get('/io', ioBound)
