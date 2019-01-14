@@ -17,7 +17,12 @@ function start() {
     .get('/cpu', cpuBound)
     .get('/memory', memoryBound)
     .get('/io', ioBound)
+    .get('/', hello)
     .listen(PORT, onListen);
+
+  function hello(req, res, next) {
+    res.send('Hello, world')
+  }
 
   function cpuBound(req, res, next) {
     const key = Math.random() < 0.5 ? 'ninjaturtles' : 'powerrangers';
