@@ -33,11 +33,12 @@ function start() {
   }
 
   function memoryBound(req, res, next) {
-    const meg = Buffer.alloc(1024 * 1024, 'X')
+    const large = Buffer.alloc(10 * 1024 * 1024, 'X')
     setTimeout(() => {
-      const len = meg.length  // access the Buffer later to try to foil V8's excellent optimizations
-      res.send('Allocated 1 MB buffer')
+      const len = large.length  // access the Buffer later to try to foil V8's excellent optimizations
+      console.log(len)
     }, 50).unref()
+    res.send('Allocated 10 MB buffer')
   }
 
   function ioBound(req, res, next) {
