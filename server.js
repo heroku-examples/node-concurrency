@@ -36,8 +36,8 @@ function start() {
     const meg = Buffer.alloc(1024 * 1024, 'X')
     setTimeout(() => {
       const len = meg.length  // access the Buffer later to try to foil V8's excellent optimizations
+      res.send('Allocated 1 MB buffer')
     }, 50).unref()
-    res.send('Allocated 1 MB buffer')
   }
 
   function ioBound(req, res, next) {
