@@ -35,9 +35,9 @@ function start() {
   function memoryBound(req, res, next) {
     const large = Buffer.alloc(10 * 1024 * 1024, 'X')
     setTimeout(() => {
-      const len = large.length  // access the Buffer later to try to foil V8's excellent optimizations
+      const len = large.length  // close over the Buffer for 1s to try to foil V8's optimizations and bloat memory
       console.log(len)
-    }, 50).unref()
+    }, 1000).unref()
     res.send('Allocated 10 MB buffer')
   }
 
