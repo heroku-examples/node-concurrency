@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "throng": "^4.0.0"
+    "throng": "^5.0.0"
   }
 }
