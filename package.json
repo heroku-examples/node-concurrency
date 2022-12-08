@@ -15,7 +15,7 @@
     "npm": "6.4.1"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "throng": "^4.0.0"
   }
 }
